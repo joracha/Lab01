@@ -61,6 +61,7 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
 
+    //Invocar otros fragment
     private void moveToFragment(Fragment fragment) {
         if(fragment instanceof CursoFragment) {
             getSupportFragmentManager().beginTransaction()
