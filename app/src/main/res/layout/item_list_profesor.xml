@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/item_list_profesor">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -11,12 +11,12 @@
         android:orientation="horizontal"
         android:weightSum="100"
         tools:ignore="MissingConstraints">
-        <com.google.android.material.textview.MaterialTextView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/imagen"
             android:textAlignment="center"
             android:gravity="center"
+            android:src="@drawable/ic_person_black_24dp"
             android:layout_weight="80"
             android:id="@+id/imagen"/>
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -31,13 +31,17 @@
                 android:layout_height="40dp"
                 android:textAlignment="textStart"
                 android:gravity="center"
-                android:id="@+id/name"/>
+                android:id="@+id/name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textAlignment="textStart"
                 android:gravity="center_horizontal"
-                android:id="@+id/cedula"/>
+                android:id="@+id/cedula"
+                tools:ignore="RtlCompat" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
