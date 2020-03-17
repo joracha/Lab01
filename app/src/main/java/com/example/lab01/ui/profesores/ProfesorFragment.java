@@ -4,41 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lab01.AccesoDatos.ModelData;
 import com.example.lab01.R;
-
-import java.util.ArrayList;
 
 public class ProfesorFragment extends Fragment {
 
     private ProfesorViewModel profesorViewModel;
-    public static ArrayList<String> mobileArray = new ArrayList<String>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         profesorViewModel =
                 ViewModelProviders.of(this).get(ProfesorViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profesores, container, false);
+        super.onCreate(savedInstanceState);
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.list_profesor);
+        recyclerView.setHasFixedSize(true);
 
+        // use a linear layout manager
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
-       ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.lista_profes, mobileArray);
-
-       mobileArray.add("Prueba");
-        ListView listView = (ListView) root.findViewById(R.id.lista_profes);
-        listView.setAdapter(adapter);
-
-
-
+        // specify an adapter (see also next example)
+        RecyclerView.Adapter mAdapter = new ProfesorListAdapter(ModelData.getInstance().getProfesorList());
+        recyclerView.setAdapter(mAdapter);
         return root;
     }
 }
