@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ModelData {
 
-    private List<Curso> cursoList;
+    private ArrayList<Curso> cursoList;
     private List<Profesor> profesorList;
     private List<Usuario> users;
     private List<Carrera> carreraList;
@@ -115,7 +115,7 @@ public class ModelData {
 
     }
 
-    public List<Curso> getCursoList() {
+    public ArrayList<Curso> getCursoList() {
         return cursoList;
     }
 
@@ -127,7 +127,7 @@ public class ModelData {
         return users;
     }
 
-    public void setCursoList(List<Curso> cursoList) {
+    public void setCursoList(ArrayList<Curso> cursoList) {
         this.cursoList = cursoList;
     }
 
