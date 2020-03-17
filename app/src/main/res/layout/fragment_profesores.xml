@@ -7,18 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.profesores.ProfesorFragment">
 
-
-        <ListView
-            android:id="@+id/lista_profes"
-            android:layout_width="314dp"
-            android:layout_height="446dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ListView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_profesor"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

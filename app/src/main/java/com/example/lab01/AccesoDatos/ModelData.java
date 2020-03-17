@@ -12,11 +12,21 @@ import java.util.List;
 public class ModelData {
 
     private ArrayList<Curso> cursoList;
-    private List<Profesor> profesorList;
-    private List<Usuario> users;
-    private List<Carrera> carreraList;
+    private ArrayList<Profesor> profesorList;
+    private ArrayList<Usuario> users;
+    private ArrayList<Carrera> carreraList;
 
-    public ModelData() {
+    private static ModelData instance = null;
+
+    public static ModelData getInstance(){
+        if ( instance == null){
+            instance = new ModelData();
+            return instance;
+        }
+        return instance;
+    }
+
+    private ModelData() {
         cursoList = new ArrayList<>();
         profesorList = new ArrayList<>();
         carreraList = new ArrayList<>();
@@ -94,8 +104,59 @@ public class ModelData {
     }
 
     private void prepareProfesorData() {
+        Profesor profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
+        profesorList.add(profesor);
 
-        Profesor profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
+        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
+        profesorList.add(profesor);
+        profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
+        profesorList.add(profesor);
+        profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
+        profesorList.add(profesor);
+         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
+        profesorList.add(profesor);
+         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
+        profesorList.add(profesor);
+
+        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
+        profesorList.add(profesor);
+         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
         profesorList.add(profesor);
 
         profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
@@ -119,11 +180,11 @@ public class ModelData {
         return cursoList;
     }
 
-    public List<Profesor> getProfesorList() {
+    public ArrayList<Profesor> getProfesorList() {
         return profesorList;
     }
 
-    public List<Usuario> getUsuariosList() {
+    public ArrayList<Usuario> getUsuariosList() {
         return users;
     }
 
@@ -131,11 +192,11 @@ public class ModelData {
         this.cursoList = cursoList;
     }
 
-    public void setProfesorList(List<Profesor> profesorList) {
+    public void setProfesorList(ArrayList<Profesor> profesorList) {
         this.profesorList = profesorList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
+    public void setUsuarioList(ArrayList<Usuario> usuarioList) {
         this.users = usuarioList;
     }
 }

@@ -1,19 +1,21 @@
 package com.example.lab01.ui.profesores;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.lab01.AccesoDatos.ModelData;
+import com.example.lab01.Logica.Profesor;
+
+import java.util.ArrayList;
 
 public class ProfesorViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    public ArrayList<Profesor> arrayTeachers;
 
     public ProfesorViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Este es el apartado de profesores");
+        this.arrayTeachers = ModelData.getInstance().getProfesorList();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public ArrayList<Profesor> getArrayTeachers() {
+        return arrayTeachers;
     }
 }

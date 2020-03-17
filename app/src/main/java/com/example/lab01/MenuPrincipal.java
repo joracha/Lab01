@@ -8,12 +8,10 @@ import android.view.Menu;
 
 import com.example.lab01.ui.cursos.CursoFragment;
 import com.example.lab01.ui.login.LoginActivity;
-import com.example.lab01.ui.profesores.ProfesorFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -43,8 +41,6 @@ public class MenuPrincipal extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profesores, R.id.nav_cursos, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
