@@ -35,6 +35,7 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
         cursoViewModel = ViewModelProviders.of(this).get(CursoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cursos, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.lista_cursos);
+        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
