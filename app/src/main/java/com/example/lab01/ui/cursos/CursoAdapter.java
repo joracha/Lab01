@@ -5,30 +5,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab01.Logica.Curso;
 import com.example.lab01.R;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder> {
-
-    private List<Curso> listaCursos; // Lista de cursos
-    private List<Curso> listaCursosFiltrada; // Lista de cursos que se mostrara al presentar filtros
+    private ArrayList<Curso> listaCursos;
     private CursoAdapterListener listener;  // Para eventos
-    private Curso deletedItem;
-    private Curso selectedItem;
 
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView codigo;
+        public TextView nombre;
+        public TextView creditos;
+        public TextView horas;
 
-        public TextView textView;
-
-        public MyViewHolder(TextView v) {
+        MyViewHolder(View v) {
             super(v);
-            textView = v;
+            codigo = v.findViewById(R.id.codigo_curso);
+            nombre = v.findViewById(R.id.nombre_curso);
+            creditos = v.findViewById(R.id.creditos_curso);
+            horas = v.findViewById(R.id.horas_curso);
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -42,23 +45,20 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
     public CursoAdapter(ArrayList<Curso> cursos, CursoAdapterListener listener) {
         listaCursos = cursos;
         this.listener = listener;
-        this.listaCursosFiltrada = listaCursos;
     }
 
+    @NonNull
     @Override
     public CursoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_cursos, parent, false);
-        v.setFocusable(true);
-
-        v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.WRAP_CONTENT));
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
+        return new CursoAdapter.MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_curso, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textView.setText(listaCursos.get(position).getNombre());
+    public void onBindViewHolder(CursoAdapter.MyViewHolder holder, int position) {
+        holder.nombre.setText(listaCursos.get(position).getNombre());
+        holder.codigo.setText("NRC: " + listaCursos.get(position).getCodigo());
+        holder.creditos.setText(listaCursos.get(position).getCreditos() + " creditos");
+        holder.horas.setText(listaCursos.get(position).getHoras() + " horas");
     }
 
     @Override
@@ -69,5 +69,4 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
     public interface CursoAdapterListener {
         void onContactSelected(Curso curso);
     }
-
 }

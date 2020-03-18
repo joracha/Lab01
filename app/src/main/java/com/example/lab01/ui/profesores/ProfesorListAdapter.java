@@ -17,6 +17,7 @@ public class ProfesorListAdapter extends RecyclerView.Adapter<ProfesorListAdapte
     private ArrayList<Profesor> mDataset;
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
+
         TextView name;
         TextView cedula;
         MyViewHolder(View c) {

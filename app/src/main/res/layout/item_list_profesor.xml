@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/item_list_profesor">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:weightSum="100"
         tools:ignore="MissingConstraints">
+
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,7 +19,8 @@
             android:gravity="center"
             android:src="@drawable/ic_person_black_24dp"
             android:layout_weight="80"
-            android:id="@+id/imagen"/>
+            android:id="@+id/imagen" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,6 +28,7 @@
             android:layout_weight="20"
             android:paddingStart="10dp"
             tools:ignore="RtlSymmetry">
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -35,6 +38,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
