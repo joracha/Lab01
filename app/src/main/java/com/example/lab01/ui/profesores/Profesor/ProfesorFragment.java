@@ -1,4 +1,4 @@
-package com.example.lab01.ui.profesores;
+package com.example.lab01.ui.profesores.Profesor;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,12 +24,10 @@ import com.example.lab01.AccesoDatos.ModelData;
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
 import com.example.lab01.ui.MySwipeHelper;
-import com.example.lab01.ui.cursos.CursoFragment;
+import com.example.lab01.ui.profesores.AgrEdiProfesor.AgrEdiProfesorActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import maes.tech.intentanim.CustomIntent;
 

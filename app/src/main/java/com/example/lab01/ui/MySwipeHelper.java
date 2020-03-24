@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
-import com.example.lab01.ui.profesores.ProfesorFragment;
-import com.example.lab01.ui.profesores.ProfesorListAdapter;
+import com.example.lab01.ui.profesores.Profesor.ProfesorFragment;
+import com.example.lab01.ui.profesores.Profesor.ProfesorListAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;

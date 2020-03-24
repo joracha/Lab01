@@ -1,4 +1,4 @@
-package com.example.lab01.ui.profesores;
+package com.example.lab01.ui.profesores.Profesor;
 
 import android.view.LayoutInflater;
 import android.view.View;

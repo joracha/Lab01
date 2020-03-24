@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_profesores"
-        android:name="com.example.lab01.ui.profesores.ProfesorFragment"
+        android:name="com.example.lab01.ui.profesores.Profesor.ProfesorFragment"
         android:label="@string/menu_profesores"
         tools:layout="@layout/fragment_profesores">
 
