@@ -1,9 +1,13 @@
-package com.example.lab01.ui.profesores;
+package com.example.lab01.ui.profesores.AgrEdiProfesor;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +19,7 @@ import com.example.lab01.Logica.Curso;
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.MenuPrincipal;
 import com.example.lab01.R;
+import com.example.lab01.ui.profesores.Profesor.ProfesorFragment;
 
 import java.util.ArrayList;
 
@@ -27,13 +32,38 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
     EditText editPhone;
     EditText editEmail;
     Spinner cursos_spinner;
+    Button button;
     int flat_edit = -1;
+    static Boolean FORM_CORRECTO = false;
+    private AgrEdiProfesorViewModel agrEdiProfesorViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agr_edi_profesor);
+        agrEdiProfesorViewModel = new AgrEdiProfesorViewModel();
         initAgrEdiProfesorActivity();
+        agrEdiProfesorViewModel.getAgrEdiProfesorFormState().observe(this, new Observer<AgrEdiProfesorFormState>() {
+            @Override
+            public void onChanged(@Nullable AgrEdiProfesorFormState loginFormState) {
+                if (loginFormState == null) {
+                    return;
+                }
+                button.setEnabled(loginFormState.isDataValid());
+                if (loginFormState.getUsernameError() != null) {
+                    editName.setError(getString(loginFormState.getUsernameError()));
+                }
+                if (loginFormState.getCedulaError() != null) {
+                    editCedula.setError(getString(loginFormState.getCedulaError()));
+                }
+                if (loginFormState.getPhoneError() != null) {
+                    editPhone.setError(getString(loginFormState.getPhoneError()));
+                }
+                if (loginFormState.getEmailError() != null) {
+                    editEmail.setError(getString(loginFormState.getEmailError()));
+                }
+            }
+        });
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.getExtras() != null) {
@@ -73,13 +103,39 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
     }
 
     private void initAgrEdiProfesorActivity(){
+        TextWatcher afterTextChangedListener = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // ignore
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // ignore
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                agrEdiProfesorViewModel.AgrEdiProfesorDataChanged(
+                        editName.getText().toString(),
+                        editCedula.getText().toString(),
+                        editPhone.getText().toString(),
+                        editEmail.getText().toString()
+                        );
+            }
+        };
         editName = findViewById(R.id.editTextName);
+        editName.addTextChangedListener(afterTextChangedListener);
         editCedula = findViewById(R.id.editTextCedula);
+        editCedula.addTextChangedListener(afterTextChangedListener);
         editPhone = findViewById(R.id.editPhone);
+        editPhone.addTextChangedListener(afterTextChangedListener);
         editEmail = findViewById(R.id.editEmail);
+        editEmail.addTextChangedListener(afterTextChangedListener);
         cursos_spinner = findViewById(R.id.cursos_spinner);
-        Button button = findViewById(R.id.buttonGuardar);
+        button = findViewById(R.id.buttonGuardar);
         button.setOnClickListener(this);
+        button.setEnabled(false);
     }
 
     @Override

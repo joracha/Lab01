@@ -1,4 +1,4 @@
-package com.example.lab01.ui.profesores;
+package com.example.lab01.ui.profesores.Profesor;
 
 import androidx.lifecycle.ViewModel;
 

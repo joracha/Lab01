@@ -5,7 +5,7 @@
     android:id="@+id/fragment_profesores"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profesores.ProfesorFragment">
+    tools:context=".ui.profesores.Profesor.ProfesorFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_profesor"

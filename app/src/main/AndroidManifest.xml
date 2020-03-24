@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.cursos.CursoCrear"></activity>
         <activity android:name=".ui.profesores.AgrEdiProfesorActivity"></activity>
+        <activity android:name=".ui.profesores.AgrEdiProfesor.AgrEdiProfesorActivity"></activity>
         <activity
             android:name=".MenuPrincipal"
             android:label="@string/title_activity_menu_principal"

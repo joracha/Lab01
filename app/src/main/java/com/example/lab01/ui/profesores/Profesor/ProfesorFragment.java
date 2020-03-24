@@ -1,4 +1,4 @@
-package com.example.lab01.ui.profesores;
+package com.example.lab01.ui.profesores.Profesor;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,8 +24,11 @@ import com.example.lab01.AccesoDatos.ModelData;
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
 import com.example.lab01.ui.MySwipeHelper;
+import com.example.lab01.ui.profesores.AgrEdiProfesor.AgrEdiProfesorActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
+
 import maes.tech.intentanim.CustomIntent;
 
 public class ProfesorFragment extends Fragment implements SearchView.OnQueryTextListener, View.OnClickListener {
