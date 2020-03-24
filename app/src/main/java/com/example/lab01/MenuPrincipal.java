@@ -6,13 +6,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.lab01.Logica.Curso;
 import com.example.lab01.ui.cursos.CursoFragment;
 import com.example.lab01.ui.login.LoginActivity;
+import com.example.lab01.ui.profesores.ProfesorFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,19 +43,24 @@ public class MenuPrincipal extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(MenuPrincipal.this, LoginActivity.class);
-                        startActivity(intent);
-                        return true;
+                startActivity(intent);
+                return true;
             }
         });
+        String accion = (String) getIntent().getSerializableExtra("accion");
+
+        if (accion != null) {
+            moveToFragment(new CursoFragment());
+        }
     }
 
     //Invocar otros fragment
     private void moveToFragment(Fragment fragment) {
-        if(fragment instanceof CursoFragment) {
+        if (fragment instanceof CursoFragment) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_profesores, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
         } else {

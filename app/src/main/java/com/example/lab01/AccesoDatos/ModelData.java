@@ -199,4 +199,8 @@ public class ModelData {
     public void setUsuarioList(ArrayList<Usuario> usuarioList) {
         this.users = usuarioList;
     }
+
+    public ArrayList<Carrera> getCarreraList() {
+        return carreraList;
+    }
 }

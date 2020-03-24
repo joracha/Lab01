@@ -45,6 +45,6 @@ public class Carrera implements Serializable {
 
     @Override
     public String toString() {
-        return "Carrera{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + '}';
+        return nombre;
     }
 }
