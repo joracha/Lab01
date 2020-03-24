@@ -83,3 +83,4 @@ public class MenuPrincipal extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 }
+

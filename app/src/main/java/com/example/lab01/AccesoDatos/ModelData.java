@@ -112,61 +112,6 @@ public class ModelData {
 
         profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
         profesorList.add(profesor);
-        profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
-        profesorList.add(profesor);
-        profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
-        profesorList.add(profesor);
-         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
-        profesorList.add(profesor);
-         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
-        profesorList.add(profesor);
-         profesor = new Profesor("402400313", "Jose", "@jose", "678", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("402400312", "Juan", "@juan", "876", "PG1");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("4024003121", "Mario", "@mario", "789", "PG2");
-        profesorList.add(profesor);
-
-        profesor = new Profesor("403010301", "Jesus", "@Jesus", "978", "PG4");
-        profesorList.add(profesor);
     }
 
     private void prepareUsuarioData() {
