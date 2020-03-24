@@ -46,4 +46,9 @@ public class ProfesorListAdapter extends RecyclerView.Adapter<ProfesorListAdapte
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public void updateList(ArrayList<Profesor> nuevaLista){
+        this.mDataset = new ArrayList<>(nuevaLista);
+        notifyDataSetChanged();
+    }
 }

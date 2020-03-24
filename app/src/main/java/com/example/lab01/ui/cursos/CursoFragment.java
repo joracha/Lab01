@@ -28,7 +28,6 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         cursoViewModel = new CursoViewModel();
         ArrayList<Curso> cursos = cursoViewModel.listarCursos();
 

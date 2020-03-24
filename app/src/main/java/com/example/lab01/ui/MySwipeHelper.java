@@ -2,16 +2,15 @@ package com.example.lab01.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
+import com.example.lab01.ui.profesores.ProfesorFragment;
 import com.example.lab01.ui.profesores.ProfesorListAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,12 +24,14 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     private ProfesorListAdapter adapter;
     private ArrayList<Profesor> teachers;
     private Profesor aux;
+    private ProfesorFragment fragment;
 
-    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, ArrayList<Profesor> teachers, RecyclerView recyclerView) {
+    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, ArrayList<Profesor> teachers, RecyclerView recyclerView, ProfesorFragment fragment) {
         super(dragDirs, swipeDirs);
         this.recyclerView = recyclerView;
         this.adapter = adapter;
         this.teachers = teachers;
+        this.fragment = fragment;
     }
 
     @Override
@@ -41,20 +42,26 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
+        aux = teachers.get(position);
         switch (direction) {
             case ItemTouchHelper.LEFT:
-                aux = teachers.get(position);
                 teachers.remove(position);
                 adapter.notifyItemRemoved(position);
                 Snackbar.make(recyclerView, aux.getNombre(), Snackbar.LENGTH_LONG).setAction("Deshacer", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        teachers.add(position, aux);
-                        adapter.notifyItemInserted(position);
+                        if(aux != null) {
+                            teachers.add(position, aux);
+                            adapter.notifyItemInserted(position);
+                            aux = null;
+                        }
                     }
                 }).show();
                 break;
             case ItemTouchHelper.RIGHT:
+                if(aux != null) {
+                    fragment.moveToAgrEdiProfesorActivity(aux, position);
+                }
                 break;
         }
     }
