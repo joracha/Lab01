@@ -24,13 +24,8 @@ import com.example.lab01.AccesoDatos.ModelData;
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
 import com.example.lab01.ui.MySwipeHelper;
-import com.example.lab01.ui.cursos.CursoFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
-import java.util.Objects;
-
 import maes.tech.intentanim.CustomIntent;
 
 public class ProfesorFragment extends Fragment implements SearchView.OnQueryTextListener, View.OnClickListener {

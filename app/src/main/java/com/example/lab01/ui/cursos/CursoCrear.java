@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class CursoCrear extends AppCompatActivity {
 
-    private FloatingActionButton button;
+    private Button button;
     private EditText editText_codigo;
     private EditText editText_nombre;
     private EditText editText_creditos;
@@ -41,7 +41,7 @@ public class CursoCrear extends AppCompatActivity {
         this.editText_creditos = (EditText) findViewById(R.id.curso_nuevo_creditos);
         this.editText_horas = (EditText) findViewById(R.id.curso_nuevo_horas);
         this.spinner_carrera = (Spinner) findViewById(R.id.curso_nuevo_carrera);
-        this.button = (FloatingActionButton) findViewById(R.id.enviar_crear_curso);
+        this.button = (Button) findViewById(R.id.enviar_crear_curso);
 
         // Spinner con las carreras quemadas
         ArrayList<Carrera> arraySpinner = ModelData.getInstance().getCarreraList();

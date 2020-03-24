@@ -29,7 +29,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
     private ItemTouchHelper.SimpleCallback simpleCallback;
     private ItemTouchHelper itemTouchHelper;
 
-
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView codigo;
@@ -45,15 +44,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
             creditos = v.findViewById(R.id.creditos_curso);
             horas = v.findViewById(R.id.horas_curso);
             carrera = v.findViewById(R.id.carrera_curso);
-
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // send selected contact in callback
-                    listener.onContactSelected(model.getCursosFiltrados().get(getAdapterPosition()));
-                }
-            });
-
         }
     }
 
@@ -119,7 +109,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
         holder.carrera.setText(getCarreraQuemada(model.getCursosFiltrados().get(position).getCarrera()));
     }
 
-    public String getCarreraQuemada(int id) {
+    private String getCarreraQuemada(int id) {
         switch (id) {
             case 1:
                 return "Ingenieria en Sistemas";
@@ -141,10 +131,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
     }
 
     public interface CursoAdapterListener {
-        void onContactSelected(Curso curso);
-
         void eliminar(int pos);
-
         void editar(int pos);
     }
 

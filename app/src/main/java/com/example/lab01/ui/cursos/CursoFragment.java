@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -25,15 +28,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapterListener {
 
-    private static String textoBuscado;
     private CursoViewModel cursoViewModel;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private FloatingActionButton fab;
     private CursoAdapter adapter;
-    private SearchView searchView;
-
+    private SearchView busqueda;
 
     @Nullable
     @Override
@@ -43,9 +41,10 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
         cursoViewModel = ViewModelProviders.of(this).get(CursoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cursos, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.lista_cursos);
+        setHasOptionsMenu(true);
 
         // Boton flotante
-        fab = (FloatingActionButton) root.findViewById(R.id.crear_curso);
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +54,7 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
 
         // Elementos para el recicle view
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
@@ -65,7 +64,7 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
         // Asignando el adapter
         recyclerView.setAdapter(adapter);
 
-        // Si llega solicitud de crear nuevo curso...
+        // Si llega solicitud de crear nuevo curso o editar un curso...
         if (getActivity().getIntent().getSerializableExtra("accion") != null) {
 
             Curso nuevo_curso = (Curso) getActivity().getIntent().getSerializableExtra("cursonuevo"); // Ya sea nuevo o uno actualizado
@@ -84,40 +83,13 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
             getActivity().getIntent().removeExtra("accion");
         }
 
-        // FILTRO
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        this.searchView = (SearchView) root.findViewById(R.id.busqueda);
-        this.searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getActivity().getComponentName()));
-        this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // filter recycler view when query submitted
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                // filter recycler view when text is changed
-                adapter.getFilter().filter(query);
-                return false;
-            }
-        });
-
         return root;
     }
 
-    public void crearCurso(View view) {
+    private void crearCurso(View view) {
         Intent intent = new Intent(getActivity(), CursoCrear.class);
         intent.putExtra("accion", "crear");
         startActivity(intent);
-    }
-
-
-    @Override
-    public void onContactSelected(Curso curso) {
-
     }
 
     @Override
@@ -133,7 +105,6 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
                 if (adapter.getModel().getCursos() != adapter.getModel().getCursosFiltrados())
                     adapter.getModel().getCursosFiltrados().add(pos, curso);
                 adapter.notifyItemInserted(pos);
-                adapter.notifyDataSetChanged();
             }
         }).show();
     }
@@ -148,17 +119,33 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        // Guarda el estado de la barra de busqueda
-        textoBuscado = this.searchView.getQuery().toString();
+    public void onResume() {
+        super.onResume();
+        setHasOptionsMenu(true);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        // Solucion a bug de que al presionar atras se queda el movimiento pegado
-        searchView.setQuery(textoBuscado, false);
-        adapter.notifyDataSetChanged();
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        // FILTRO
+        MenuItem search = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) search.getActionView();
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+        });
     }
 }
