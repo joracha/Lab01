@@ -2,6 +2,7 @@ package com.example.lab01.ui.profesores.Profesor;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -52,10 +54,13 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         layoutManager.setSmoothScrollbarEnabled(true);
-
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation()));
-
         recyclerView.setLayoutManager(layoutManager);
+
+        Drawable mDivider = ContextCompat.getDrawable(getActivity(), R.drawable.divider);
+        DividerItemDecoration hItemDecoration = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
+        hItemDecoration.setDrawable(mDivider);
+        DividerItemDecoration vItemDecoration = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
+        recyclerView.addItemDecoration(vItemDecoration);
 
         adapter = new ProfesorListAdapter(ModelData.getInstance().getProfesorList());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -88,7 +93,7 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
         String userInput = newText.toLowerCase();
         ArrayList<Profesor> arrayTeachers = new ArrayList<>();
         for (Profesor teacher : profesorViewModel.getArrayTeachers()) {
-            if (teacher.getNombre().toLowerCase().contains(userInput)) {
+            if (teacher.getNombre().toLowerCase().contains(userInput)||teacher.getCedula().toLowerCase().contains(userInput)) {
                 arrayTeachers.add(teacher);
             }
         }

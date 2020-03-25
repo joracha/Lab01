@@ -34,7 +34,6 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
     Spinner cursos_spinner;
     Button button;
     int flat_edit = -1;
-    static Boolean FORM_CORRECTO = false;
     private AgrEdiProfesorViewModel agrEdiProfesorViewModel;
 
     @Override
@@ -95,7 +94,7 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
                 for (Curso curso : ModelData.getInstance().getCursoList())
                     nombreCursos.add(curso.getNombre());
                 ArrayAdapter<String> adapter =
-                        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombreCursos);
+                        new ArrayAdapter<String>(this, R.layout.spinner_item, nombreCursos);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 cursos_spinner.setAdapter(adapter);
             }

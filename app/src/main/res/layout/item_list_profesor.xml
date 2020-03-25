@@ -30,12 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textAlignment="textStart"
+                style="@style/labelDark"
                 android:gravity="center"
                 android:id="@+id/name"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 tools:ignore="RtlCompat" />
             <com.google.android.material.textview.MaterialTextView
+                android:textColor="@color/textColor"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textAlignment="textStart"
