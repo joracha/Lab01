@@ -75,9 +75,9 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
             public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY
                     , int actionState, boolean isCurrentlyActive) {
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                        .addSwipeLeftBackgroundColor(Color.parseColor("#ED5147"))
+                        .addSwipeLeftBackgroundColor(Color.parseColor("#7A1712"))
                         .addSwipeLeftActionIcon(R.drawable.ic_delete_24dp)
-                        .addSwipeRightBackgroundColor(Color.parseColor("#00B2CA"))
+                        .addSwipeRightBackgroundColor(Color.parseColor("#7986CB"))
                         .addSwipeRightActionIcon(R.drawable.ic_edit_24dp)
                         .create()
                         .decorate();
