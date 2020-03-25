@@ -52,9 +52,9 @@ public class CursoViewModel extends ViewModel {
 
     public int editarCurso(Curso curso) {
         int index = 0;
-        for (Curso curso_ite : cursosFiltrados) {
+        for (Curso curso_ite : cursos) {
             if (curso_ite.getCodigo().trim().toLowerCase().equals(curso.getCodigo().trim().toLowerCase())) {
-                cursos.remove(index);
+                eliminarCurso(curso_ite);
                 cursos.add(index, curso);
                 return index;
             }

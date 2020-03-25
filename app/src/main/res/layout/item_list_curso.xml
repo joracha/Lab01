@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:gravity="center"
+                style="@style/labelDark"
                 android:textAlignment="textStart"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -49,8 +50,10 @@
                     android:id="@+id/carrera_curso"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    style="@style/labelDark"
                     android:layout_weight="1"
                     android:gravity="start"
+                    android:textSize="15sp"
                     android:textAlignment="textStart" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -62,6 +65,7 @@
                 android:weightSum="3">
 
                 <TextView
+                    android:textColor="@color/textColor"
                     android:id="@+id/codigo_curso"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -70,6 +74,7 @@
                     android:textAlignment="textStart" />
 
                 <TextView
+                    android:textColor="@color/textColor"
                     android:id="@+id/creditos_curso"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -78,6 +83,7 @@
                     android:textAlignment="textStart" />
 
                 <TextView
+                    android:textColor="@color/textColor"
                     android:id="@+id/horas_curso"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

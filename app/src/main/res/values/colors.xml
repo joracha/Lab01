@@ -10,4 +10,5 @@
     <color name="textColor">#CECECE</color>
     <color name="divider_color">#002724</color>
     <color name="disable_color">#CDCDCD</color>
+    <color name="input">#CDCDCD</color>
 </resources>

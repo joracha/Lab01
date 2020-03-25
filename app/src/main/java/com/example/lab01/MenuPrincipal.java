@@ -45,9 +45,8 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
         String accion = (String) getIntent().getSerializableExtra("vamos_a_cursos");
-
+        getIntent().removeExtra("vamos_a_cursos");
         if (accion != null) {
-            getIntent().removeExtra("vamos_a_cursos");
             toolbar.setTitle("Cursos"); // Titulo en el header
             navigationView.getMenu().getItem(1).setChecked(true); // Opcion focuseada en el menu
             moveToFragment(new CursoFragment()); // Contenido

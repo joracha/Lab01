@@ -49,7 +49,7 @@ public class CursoCrearEditar extends AppCompatActivity {
         // Spinner con las carreras quemadas
         ArrayList<Carrera> arraySpinner = ModelData.getInstance().getCarreraList();
         Spinner s = (Spinner) findViewById(R.id.curso_nuevo_carrera);
-        ArrayAdapter<Carrera> adapter = new ArrayAdapter<Carrera>(this, R.layout.support_simple_spinner_dropdown_item, arraySpinner);
+        ArrayAdapter<Carrera> adapter = new ArrayAdapter<Carrera>(this, R.layout.spinner_item_curso, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
 
@@ -60,6 +60,7 @@ public class CursoCrearEditar extends AppCompatActivity {
         listenersErrores();
 
         if (accion.equals("crear")) {
+            setTitle("Agregar Curso");
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,10 +75,10 @@ public class CursoCrearEditar extends AppCompatActivity {
                 }
             });
         } else if (accion.equals("editar")) {
+            setTitle("Editar curso");
             button.setText("Guardar");
             this.editText_codigo.setFocusable(false);
             this.editText_codigo.setClickable(false);
-            this.editText_codigo.setBackgroundResource(R.color.disable_color);
             final Curso nuevo_curso = (Curso) getIntent().getSerializableExtra("curso_a_editar");
             llenarCampos(nuevo_curso);
             button.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +127,8 @@ public class CursoCrearEditar extends AppCompatActivity {
         String creditos = this.editText_creditos.getText().toString();
         String horas = this.editText_horas.getText().toString();
         int carrera = this.spinner_carrera.getSelectedItemPosition() + 1;
-        int creditos_f = Integer.parseInt(creditos);
-        int horas_f = Integer.parseInt(horas);
+        int creditos_f = (creditos.isEmpty()) ? 0 : Integer.parseInt(creditos);
+        int horas_f = (horas.isEmpty()) ? 0 : Integer.parseInt(horas);
 
         // VALIDACIONES
         if (codigo.isEmpty() || nombre.isEmpty() || creditos.isEmpty() || horas.isEmpty()) {
