@@ -135,7 +135,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
         void editar(int pos);
     }
 
-
     @Override
     public Filter getFilter() {
         return new Filter() {

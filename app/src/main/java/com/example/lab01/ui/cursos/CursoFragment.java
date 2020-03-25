@@ -30,7 +30,7 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
 
     private CursoViewModel cursoViewModel;
     private RecyclerView recyclerView;
-    private CursoAdapter adapter;
+    private static CursoAdapter adapter;
     private SearchView busqueda;
 
     @Nullable
@@ -64,30 +64,11 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
         // Asignando el adapter
         recyclerView.setAdapter(adapter);
 
-        // Si llega solicitud de crear nuevo curso o editar un curso...
-        if (getActivity().getIntent().getSerializableExtra("accion") != null) {
-
-            Curso nuevo_curso = (Curso) getActivity().getIntent().getSerializableExtra("cursonuevo"); // Ya sea nuevo o uno actualizado
-
-            if (getActivity().getIntent().getSerializableExtra("accion").equals("creado")) {
-                adapter.getModel().agregarCurso(nuevo_curso);
-                adapter.notifyItemInserted(adapter.getItemCount());
-                Toast.makeText(getActivity().getApplicationContext(), "Curso insertado correctamente", Toast.LENGTH_SHORT).show();
-            } else if (getActivity().getIntent().getSerializableExtra("accion").equals("actualizado")) {
-                int pos = adapter.getModel().editarCurso(nuevo_curso);
-                adapter.notifyItemChanged(pos);
-                Toast.makeText(getActivity().getApplicationContext(), "Curso modificado correctamente", Toast.LENGTH_SHORT).show();
-            }
-
-            getActivity().getIntent().removeExtra("cursonuevo");
-            getActivity().getIntent().removeExtra("accion");
-        }
-
         return root;
     }
 
     private void crearCurso(View view) {
-        Intent intent = new Intent(getActivity(), CursoCrear.class);
+        Intent intent = new Intent(getActivity(), CursoCrearEditar.class);
         intent.putExtra("accion", "crear");
         startActivity(intent);
     }
@@ -99,12 +80,16 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
         adapter.getModel().eliminarCurso(curso);
         adapter.notifyItemRemoved(pos);
         Snackbar.make(recyclerView, curso.getNombre(), Snackbar.LENGTH_LONG).setAction("Deshacer", new View.OnClickListener() {
+            private boolean flag = true;
             @Override
             public void onClick(View view) {
-                adapter.getModel().getCursos().add(pos2, curso);
-                if (adapter.getModel().getCursos() != adapter.getModel().getCursosFiltrados())
-                    adapter.getModel().getCursosFiltrados().add(pos, curso);
-                adapter.notifyItemInserted(pos);
+                if (flag) {
+                    adapter.getModel().getCursos().add(pos2, curso);
+                    if (adapter.getModel().getCursos() != adapter.getModel().getCursosFiltrados())
+                        adapter.getModel().getCursosFiltrados().add(pos, curso);
+                    adapter.notifyItemInserted(pos);
+                }
+                flag = false;
             }
         }).show();
     }
@@ -112,7 +97,7 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
     @Override
     public void editar(int pos) {
         final Curso curso = adapter.getModel().getCursosFiltrados().get(pos);
-        Intent intent = new Intent(getActivity(), CursoCrear.class);
+        Intent intent = new Intent(getActivity(), CursoCrearEditar.class);
         intent.putExtra("accion", "editar");
         intent.putExtra("curso_a_editar", curso);
         startActivity(intent);
@@ -147,5 +132,9 @@ public class CursoFragment extends Fragment implements CursoAdapter.CursoAdapter
                 return false;
             }
         });
+    }
+
+    public static CursoAdapter getAdapter() {
+        return adapter;
     }
 }

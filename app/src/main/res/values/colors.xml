@@ -6,4 +6,5 @@
     <color name="delete">#ED5147</color>
     <color name="edit">#00B2CA</color>
     <color name="input">#3C6E71</color>
+    <color name="disable_color">#CDCDCD</color>
 </resources>

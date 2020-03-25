@@ -34,7 +34,6 @@ public class CursoViewModel extends ViewModel {
         return cursosFiltrados;
     }
 
-
     public void setCursosFiltrados(ArrayList<Curso> cursos) {
         this.cursosFiltrados = cursos;
     }
