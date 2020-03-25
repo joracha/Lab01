@@ -31,6 +31,10 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
+    <style name="simpleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

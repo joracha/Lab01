@@ -2,7 +2,6 @@ package com.example.lab01.ui.profesores.Profesor;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +29,7 @@ import com.example.lab01.ui.profesores.AgrEdiProfesor.AgrEdiProfesorActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -56,11 +56,9 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
         layoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        Drawable mDivider = ContextCompat.getDrawable(getActivity(), R.drawable.divider);
         DividerItemDecoration hItemDecoration = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
-        hItemDecoration.setDrawable(mDivider);
-        DividerItemDecoration vItemDecoration = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
-        recyclerView.addItemDecoration(vItemDecoration);
+        hItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getActivity(), R.drawable.divider)));
+        recyclerView.addItemDecoration(hItemDecoration);
 
         adapter = new ProfesorListAdapter(ModelData.getInstance().getProfesorList());
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -68,6 +68,7 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
             if (intent.getExtras() != null) {
                 Profesor profesor = (Profesor) intent.getSerializableExtra(ProfesorFragment.EDIT_PROFESOR);
                 if (profesor != null) {
+                    setTitle("Agregar Profesor");
                     flat_edit = 1;
                     editName.setText(profesor.getNombre());
                     editCedula.setText(profesor.getCedula());
@@ -84,12 +85,13 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
                         i++;
                     }
                     ArrayAdapter<String> adapter =
-                            new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombreCursos);
+                            new ArrayAdapter<String>(this, R.layout.spinner_item, nombreCursos);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     cursos_spinner.setAdapter(adapter);
                     cursos_spinner.setSelection(selected);
                 }
             } else {
+                setTitle("Editar Profesor");
                 ArrayList<String> nombreCursos = new ArrayList<>();
                 for (Curso curso : ModelData.getInstance().getCursoList())
                     nombreCursos.add(curso.getNombre());
