@@ -1,6 +1,8 @@
 package com.example.lab01;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;

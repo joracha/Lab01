@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -28,6 +29,7 @@ import com.example.lab01.ui.profesores.AgrEdiProfesor.AgrEdiProfesorActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -52,10 +54,11 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         layoutManager.setSmoothScrollbarEnabled(true);
-
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation()));
-
         recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration hItemDecoration = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
+        hItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getActivity(), R.drawable.divider)));
+        recyclerView.addItemDecoration(hItemDecoration);
 
         adapter = new ProfesorListAdapter(ModelData.getInstance().getProfesorList());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -88,7 +91,7 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
         String userInput = newText.toLowerCase();
         ArrayList<Profesor> arrayTeachers = new ArrayList<>();
         for (Profesor teacher : profesorViewModel.getArrayTeachers()) {
-            if (teacher.getNombre().toLowerCase().contains(userInput)) {
+            if (teacher.getNombre().toLowerCase().contains(userInput)||teacher.getCedula().toLowerCase().contains(userInput)) {
                 arrayTeachers.add(teacher);
             }
         }

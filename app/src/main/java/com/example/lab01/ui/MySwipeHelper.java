@@ -1,5 +1,6 @@
 package com.example.lab01.ui;
 
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.View;
@@ -66,12 +67,13 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                .addSwipeLeftBackgroundColor(Color.parseColor("#ED5147"))
+                .addSwipeLeftBackgroundColor(Color.parseColor(fragment.getString(R.color.delete)))
                 .addSwipeLeftActionIcon(R.drawable.ic_delete_24dp)
-                .addSwipeRightBackgroundColor(Color.parseColor("#00B2CA"))
+                .addSwipeRightBackgroundColor(Color.parseColor(fragment.getString(R.color.edit)))
                 .addSwipeRightActionIcon(R.drawable.ic_edit_24dp)
                 .create()
                 .decorate();
