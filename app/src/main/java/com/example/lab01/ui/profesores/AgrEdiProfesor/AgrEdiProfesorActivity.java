@@ -68,7 +68,7 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
             if (intent.getExtras() != null) {
                 Profesor profesor = (Profesor) intent.getSerializableExtra(ProfesorFragment.EDIT_PROFESOR);
                 if (profesor != null) {
-                    setTitle("Agregar Profesor");
+                    setTitle("Editar Profesor");
                     flat_edit = 1;
                     editName.setText(profesor.getNombre());
                     editCedula.setText(profesor.getCedula());
@@ -91,7 +91,7 @@ public class AgrEdiProfesorActivity extends AppCompatActivity implements View.On
                     cursos_spinner.setSelection(selected);
                 }
             } else {
-                setTitle("Editar Profesor");
+                setTitle("Agregar Profesor");
                 ArrayList<String> nombreCursos = new ArrayList<>();
                 for (Curso curso : ModelData.getInstance().getCursoList())
                     nombreCursos.add(curso.getNombre());
