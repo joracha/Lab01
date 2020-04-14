@@ -65,7 +65,7 @@ public class ProfesorFragment extends Fragment implements SearchView.OnQueryText
         recyclerView.setAdapter(adapter);
 
         MySwipeHelper simpleCallback =
-                new MySwipeHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, adapter, ModelData.getInstance().getProfesorList(), recyclerView, this);
+                new MySwipeHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, adapter, recyclerView, this);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 

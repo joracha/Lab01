@@ -43,6 +43,10 @@ public class ProfesorListAdapter extends RecyclerView.Adapter<ProfesorListAdapte
         holder.cedula.setText(mDataset.get(position).getCedula());
     }
 
+    public ArrayList<Profesor> getmDataset() {
+        return mDataset;
+    }
+
     @Override
     public int getItemCount() {
         return mDataset.size();

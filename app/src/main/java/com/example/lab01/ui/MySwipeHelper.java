@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lab01.AccesoDatos.ModelData;
 import com.example.lab01.Logica.Profesor;
 import com.example.lab01.R;
 import com.example.lab01.ui.profesores.Profesor.ProfesorFragment;
@@ -23,15 +24,13 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private RecyclerView recyclerView;
     private ProfesorListAdapter adapter;
-    private ArrayList<Profesor> teachers;
     private Profesor aux;
     private ProfesorFragment fragment;
 
-    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, ArrayList<Profesor> teachers, RecyclerView recyclerView, ProfesorFragment fragment) {
+    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, RecyclerView recyclerView, ProfesorFragment fragment) {
         super(dragDirs, swipeDirs);
         this.recyclerView = recyclerView;
         this.adapter = adapter;
-        this.teachers = teachers;
         this.fragment = fragment;
     }
 
@@ -43,16 +42,17 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        aux = teachers.get(position);
         switch (direction) {
             case ItemTouchHelper.LEFT:
-                teachers.remove(position);
+                aux = adapter.getmDataset().remove(position);
+                ModelData.getInstance().getProfesorList().remove(aux);
                 adapter.notifyItemRemoved(position);
                 Snackbar.make(recyclerView, aux.getNombre(), Snackbar.LENGTH_LONG).setAction("Deshacer", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if(aux != null) {
-                            teachers.add(position, aux);
+                            ModelData.getInstance().getProfesorList().add(aux);
+                            adapter.getmDataset().add(position, aux);
                             adapter.notifyItemInserted(position);
                             aux = null;
                         }
