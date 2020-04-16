@@ -42,6 +42,7 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
+        aux = adapter.getmDataset().get(position);
         switch (direction) {
             case ItemTouchHelper.LEFT:
                 aux = adapter.getmDataset().remove(position);
