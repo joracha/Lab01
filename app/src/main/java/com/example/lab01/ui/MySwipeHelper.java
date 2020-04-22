@@ -27,7 +27,8 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     private Profesor aux;
     private ProfesorFragment fragment;
 
-    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, RecyclerView recyclerView, ProfesorFragment fragment) {
+    public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, RecyclerView recyclerView,
+            ProfesorFragment fragment) {
         super(dragDirs, swipeDirs);
         this.recyclerView = recyclerView;
         this.adapter = adapter;
@@ -35,7 +36,8 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     }
 
     @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
+            @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
@@ -48,20 +50,21 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
                 aux = adapter.getmDataset().remove(position);
                 ModelData.getInstance().getProfesorList().remove(aux);
                 adapter.notifyItemRemoved(position);
-                Snackbar.make(recyclerView, aux.getNombre(), Snackbar.LENGTH_LONG).setAction("Deshacer", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(aux != null) {
-                            ModelData.getInstance().getProfesorList().add(aux);
-                            adapter.getmDataset().add(position, aux);
-                            adapter.notifyItemInserted(position);
-                            aux = null;
-                        }
-                    }
-                }).show();
+                Snackbar.make(recyclerView, aux.getNombre(), Snackbar.LENGTH_LONG)
+                        .setAction("Deshacer", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (aux != null) {
+                                    ModelData.getInstance().getProfesorList().add(aux);
+                                    adapter.getmDataset().add(position, aux);
+                                    adapter.notifyItemInserted(position);
+                                    aux = null;
+                                }
+                            }
+                        }).show();
                 break;
             case ItemTouchHelper.RIGHT:
-                if(aux != null) {
+                if (aux != null) {
                     fragment.moveToAgrEdiProfesorActivity(aux, position);
                 }
                 break;
@@ -70,14 +73,14 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     @SuppressLint("ResourceType")
     @Override
-    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
+            @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
+            boolean isCurrentlyActive) {
         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 .addSwipeLeftBackgroundColor(Color.parseColor(fragment.getString(R.color.delete)))
                 .addSwipeLeftActionIcon(R.drawable.ic_delete_24dp)
                 .addSwipeRightBackgroundColor(Color.parseColor(fragment.getString(R.color.edit)))
-                .addSwipeRightActionIcon(R.drawable.ic_edit_24dp)
-                .create()
-                .decorate();
+                .addSwipeRightActionIcon(R.drawable.ic_edit_24dp).create().decorate();
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 }
