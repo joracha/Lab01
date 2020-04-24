@@ -24,11 +24,10 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private RecyclerView recyclerView;
     private ProfesorListAdapter adapter;
-    private Profesor aux;
     private ProfesorFragment fragment;
 
     public MySwipeHelper(int dragDirs, int swipeDirs, ProfesorListAdapter adapter, RecyclerView recyclerView,
-            ProfesorFragment fragment) {
+                         ProfesorFragment fragment) {
         super(dragDirs, swipeDirs);
         this.recyclerView = recyclerView;
         this.adapter = adapter;
@@ -37,36 +36,35 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
-            @NonNull RecyclerView.ViewHolder target) {
+                          @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        aux = adapter.getmDataset().get(position);
         switch (direction) {
             case ItemTouchHelper.LEFT:
-                aux = adapter.getmDataset().remove(position);
+                final Profesor aux = adapter.getmDataset().remove(position);
                 ModelData.getInstance().getProfesorList().remove(aux);
                 adapter.notifyItemRemoved(position);
                 Snackbar.make(recyclerView, aux.getNombre(), Snackbar.LENGTH_LONG)
                         .setAction("Deshacer", new View.OnClickListener() {
+                            private boolean flag = true;
                             @Override
                             public void onClick(View view) {
-                                if (aux != null) {
-                                    ModelData.getInstance().getProfesorList().add(aux);
+                                if (flag) {
                                     adapter.getmDataset().add(position, aux);
+                                    if (!adapter.getmDataset().equals(ModelData.getInstance().getProfesorList()))
+                                        ModelData.getInstance().getProfesorList().add(position, aux);
                                     adapter.notifyItemInserted(position);
-                                    aux = null;
                                 }
+                                flag = false;
                             }
                         }).show();
                 break;
             case ItemTouchHelper.RIGHT:
-                if (aux != null) {
-                    fragment.moveToAgrEdiProfesorActivity(aux, position);
-                }
+                fragment.moveToAgrEdiProfesorActivity(adapter.getmDataset().get(position), position);
                 break;
         }
     }
@@ -74,8 +72,8 @@ public class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     @SuppressLint("ResourceType")
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
-            @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
-            boolean isCurrentlyActive) {
+                            @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
+                            boolean isCurrentlyActive) {
         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 .addSwipeLeftBackgroundColor(Color.parseColor(fragment.getString(R.color.delete)))
                 .addSwipeLeftActionIcon(R.drawable.ic_delete_24dp)
